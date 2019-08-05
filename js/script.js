@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 (function () {
   const cardList = document.querySelector('#card-list');
