@@ -1,17 +1,14 @@
-"use strict";
+import { Cart } from "./cart";
+import { Product } from "./product";
+import { data } from "./data";
 
-(function () {
-  const cardList = document.querySelector('#card-list');
-  const template = document.querySelector('#template1').content.querySelector('div');
+const cardList = document.querySelector('#card-list');
+const cartContainer = document.querySelector('#cart-container');
 
-  for (let i = 0; i < window.data.length; i++) {
-    const templateClone = template.cloneNode(true);
-    templateClone.querySelector('.card-title').textContent = window.data[i].name;
-    templateClone.querySelector('.card-text').textContent = window.data[i].text;
-    templateClone.querySelector('.btn').addEventListener('click', () => {
-      alert(`Стоимость — ${window.data[i].cost}`);
-    });
+const cart = new Cart(cartContainer);
+cart.render();
 
-    cardList.appendChild(templateClone);
-  }
-}());
+for (let i = 0; i < data.length; i++) {
+  let product = new Product(cart, cardList, data[i]);
+  product.render();
+}
